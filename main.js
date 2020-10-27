@@ -21,7 +21,7 @@ obj.renderObject();*/
 
 // 2
 
-var mass = [1, 2, 3, 6];
+/*var mass = [1, 2, 3, 6];
 
 var obj = {
     elem: 0,
@@ -41,7 +41,7 @@ var obj = {
 
 obj.m1().m2().m3();
 obj.m2().m1().m3();
-obj.m2().m1().m3().m1().m1();
+obj.m2().m1().m3().m1().m1();*/
 
 // 3
 
@@ -49,7 +49,7 @@ obj.m2().m1().m3().m1().m1();
     addRecord: function(o) {
         for (let i = 0, size = arguments.length; i < size; i++) {
             for (var key in arguments[i]) {
-                data[key] = arguments[i][key];
+                this[key] = arguments[i][key];
             }
         }
     },
@@ -68,23 +68,16 @@ console.log(data.str); // 'hello'*/
 
 // 4
 
-/* В метод addRecord добавляется последний необязательный аргумент flag, 
-который указывает приоритет присвоения свойств с одинаковым названием. 
-Если true - берется свойство из первоначального объекта this, 
-если false - берется свойство из arguments. По умолчанию flag = false; */
-
-/*data = {
+data = {
     addRecord: function(o) {
         for (let i = 0, size = arguments.length; i < size; i++) {
-            if (arguments[size - 1] == true) {
-                for (var key in arguments[i]) {
+            for (var key in arguments[i]) {
+                if (arguments[size - 1] == true) {
                     if (this[key] === undefined) {
                         data[key] = arguments[i][key];
                     }
                 }
-            }
-            else {
-                for (var key in arguments[i]) {
+                else {
                     data[key] = arguments[i][key];
                 }
             }
@@ -101,4 +94,4 @@ console.log(data.x); // 50
 console.log(data.y); // 20
 console.log(data.z); // 30
 console.log(data.p); // 600
-console.log(data.str); // 'hello'*/
+console.log(data.str); // 'hello'
